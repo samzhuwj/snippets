@@ -1,0 +1,353 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+</head>
+
+<body style="margin:0; padding:0; background-color:#e5e5e5;">
+  <center>
+    <table cellpadding="0" cellspacing="0" bgcolor="#e5e5e5" border="0" width="600" style="margin-top:20px;margin-bottom:20px;font-family:Helvetica, Arial,san-serif;line-height:1.2">
+      <tr style="margin-bottom:20px;">
+        <td colspan="3">
+					{% if event.branded %}
+					  {% if engagement_settings.html_email_banner_linkout %}
+							<a href="{{ engagement_settings.html_email_banner_linkout }}">
+						{% endif %}
+						    <img height="150" width="600" src="http://img.jublia.com/e/{{event.eventName}}/img/{{engagement_settings.html_email_banner_identifier}}" alt="header"/>
+						{% if engagement_settings.html_email_banner_linkout %}
+						  </a>
+						{% endif %}
+          {% endif %}  					
+				</td>
+      </tr>
+			
+      <tr>
+        <td colspan="3" style="background:white;">
+			    <p style="margin:30px 20px 10px 20px;">Dear {{profile.fullName}},</p>
+			    <p style="margin:0 20px 10px 20px;">
+            <span id="edit_section_1">
+              {% if (profile.language == 'cn') or (('cn' in event.languages) and (profile.language == '')) %}
+                <span class="cn">
+                  You will have received emails from us regarding the business matching platform prepared for you.
+                  This platform will help you reach out to {{profile.otherTypeOfPeople}} and make the most of your time at {{event.eventFullName}}.<br/>
+                </span>
+              {% endif %}
+              {% if (profile.language == 'tc') or (('tc' in event.languages) and (profile.language == '')) %}
+                <span class="tc">
+                  You will have received emails from us regarding the business matching platform prepared for you.
+                  This platform will help you reach out to {{profile.otherTypeOfPeople}} and make the most of your time at {{event.eventFullName}}.<br/>
+                </span>
+              {% endif %}
+              {% if (profile.language == 'jp') or (('jp' in event.languages) and (profile.language == '')) %}
+                <span class="jp">
+                  You will have received emails from us regarding the business matching platform prepared for you.
+                  This platform will help you reach out to {{profile.otherTypeOfPeople}} and make the most of your time at {{event.eventFullName}}.<br/>
+                </span>
+              {% endif %}
+              {% if (profile.language == 'id') or (('id' in event.languages) and (profile.language == '')) %}
+                <span class="id">
+                  You will have received emails from us regarding the business matching platform prepared for you.
+                  This platform will help you reach out to {{profile.otherTypeOfPeople}} and make the most of your time at {{event.eventFullName}}.<br/>
+                </span>
+              {% endif %}
+              {% if (profile.language == 'vn') or (('vn' in event.languages) and (profile.language == '')) %}
+                <span class="vn">
+                  You will have received emails from us regarding the business matching platform prepared for you.
+                  This platform will help you reach out to {{profile.otherTypeOfPeople}} and make the most of your time at {{event.eventFullName}}.<br/>
+                </span>
+              {% endif %}
+              {% if (profile.language == 'th') or (('th' in event.languages) and (profile.language == '')) %}
+                <span class="th">
+                  You will have received emails from us regarding the business matching platform prepared for you.
+                  This platform will help you reach out to {{profile.otherTypeOfPeople}} and make the most of your time at {{event.eventFullName}}.<br/>
+                </span>
+              {% endif %}
+              {% if (profile.language == 'kr') or (('kr' in event.languages) and (profile.language == '')) %}
+                <span class="kr">
+                  You will have received emails from us regarding the business matching platform prepared for you.
+                  This platform will help you reach out to {{profile.otherTypeOfPeople}} and make the most of your time at {{event.eventFullName}}.<br/>
+                </span>
+              {% endif %}
+              {% if (profile.language == 'en') or (('en' in event.languages) and (profile.language == '')) %}
+                <span class="en">
+                  You will have received emails from us regarding the business matching platform prepared for you.
+                  This platform will help you reach out to {{profile.otherTypeOfPeople}} and make the most of your time at {{event.eventFullName}}.<br/>
+                </span>
+              {% endif %}            
+            </span>          
+          </p>
+        </td>
+      </tr>
+
+      <tr>
+        <td colspan="3" style="background:{{settings.themeBackground}};">
+          <h3 style="text-align:center;margin:20px 0;">
+            {% if (profile.language == 'cn') or (('cn' in event.languages) and (profile.language == '')) %}
+              Recommendations for you
+            {% endif %}
+            {% if (profile.language == 'tc') or (('tc' in event.languages) and (profile.language == '')) %}
+              Recommendations for you
+            {% endif %}
+            {% if (profile.language == 'jp') or (('jp' in event.languages) and (profile.language == '')) %}
+              Recommendations for you
+            {% endif %}
+            {% if (profile.language == 'id') or (('id' in event.languages) and (profile.language == '')) %}
+              Recommendations for you
+            {% endif %}
+            {% if (profile.language == 'vn') or (('vn' in event.languages) and (profile.language == '')) %}
+              Recommendations for you
+            {% endif %}
+            {% if (profile.language == 'th') or (('th' in event.languages) and (profile.language == '')) %}
+              Recommendations for you
+            {% endif %}
+            {% if (profile.language == 'kr') or (('kr' in event.languages) and (profile.language == '')) %}
+              Recommendations for you
+            {% endif %}
+            {% if (profile.language == 'en') or (('en' in event.languages) and (profile.language == '')) %}
+              Recommendations for you
+            {% endif %}                    
+          </h3>
+        </td>
+      </tr>
+
+      <tr>
+        <td colspan="3" height="10">
+        </td>
+      </tr>
+
+      {% for i in range(0, numberOfResults) %}
+        <tr style="background:white;">        
+          <td width="90" align="center">
+            {% if attendees[i].profile_img %}
+              <img src="{{ attendees[i].profile_img }}"
+                   alt="profile"
+                   height="60"
+                   width="60"/>
+            {% else %}
+              <img src="https://jublia.com/e/{{event.eventName}}/img/pimg_placehold.png"
+                   alt="profile"
+                   height="60"
+                   width="60"/>
+            {% endif %}
+  				</td>
+          <td width="410" valign="top">
+            <p style="margin:10px 5px 0px 5px;line-height:1;">{{ attendees[i].fullname }}</p>
+            <p style="margin:0 5px;line-height:1;">{{ attendees[i].position }}</p>
+            <p style="margin:0 5px 10px 5px;line-height:1;">{{ attendees[i].companyname }}</p>
+            <!-- <p style="display:inline-block;margin:0 0px 10px 10px;">Primary Sector of Interest:</p> -->
+            <!-- <div style="display:inline-block;padding:3px;margin:0 3px 3px 0;background:#e5e5e5;">Hihi</div>
+            <div style="display:inline-block;padding:3px;margin:0 3px 3px 0;background:{{settings.themeBackground}};">Hahahahaha</div> -->
+            <div style="display:inline-block;margin:0 5px 10px 5px;">
+              {% for interested_attribute in attendees[i].interested_attributes %}
+                {% if interested_attribute[2] %}
+                  <span style="background-color: {{settings.themeBackground}};">
+                    {{ interested_attribute[0] }}
+                  </span>&nbsp;
+                {% else %}
+                  <span style="background-color: #e5e5e5;">
+                    {{ interested_attribute[0] }}
+                  </span>&nbsp;
+                {% endif %}
+              {% endfor %}
+            </div>
+            <div style="display:inline-block;margin:0 5px;">
+              {% if (attendees[i].description != "-") and (attendees[i].description != "") %}
+               <i style = "font-size: 11px; line-height:1.2;">"
+                  {{ attendees[i].description }}
+                "</i>
+              {% endif %}              
+            </div>
+          </td>
+          <td width="100" valign="center" align="center">
+            <a href="{{event.urlLink}}?passcode={{profile.loginPasscode}}&sID={{attendees[i].id}}" style="text-decoration:none">
+              <div style="background:{{settings.themeBackground}};color:white;display:inline-block;">
+                <p style="margin:10px 15px;">Meet</p>
+              </div>
+            </a>
+          </td>
+        </tr>
+  			
+  	    <tr>
+  	      <td colspan="3" height="5"></td>
+  	    </tr>
+      {% endfor %}
+
+      <tr>
+        <td colspan="3" height="5">
+        </td>
+      </tr>
+
+      <tr style="background:white;">
+        <td align="center" colspan="3">
+	        <p style="margin:30px 20px 20px 20px;">
+            <span id="edit_section_2">
+              {% if (profile.language == 'cn') or (('cn' in event.languages) and (profile.language == '')) %}
+                <span class="cn">
+                 Click on the button below to view more relevant {{ profile.otherTypeOfPeople }} that we have specially prepared for you.
+                </span>
+              {% endif %}
+              {% if (profile.language == 'tc') or (('tc' in event.languages) and (profile.language == '')) %}
+                <span class="tc">
+                Click on the button below to view more relevant {{ profile.otherTypeOfPeople }} that we have specially prepared for you.
+                </span>
+              {% endif %}
+              {% if (profile.language == 'jp') or (('jp' in event.languages) and (profile.language == '')) %}
+                <span class="jp">
+                Click on the button below to view more relevant {{ profile.otherTypeOfPeople }} that we have specially prepared for you.
+                </span>
+              {% endif %}
+              {% if (profile.language == 'id') or (('id' in event.languages) and (profile.language == '')) %}
+                <span class="id">
+                Click on the button below to view more relevant {{ profile.otherTypeOfPeople }} that we have specially prepared for you.
+                </span>
+              {% endif %}
+              {% if (profile.language == 'vn') or (('vn' in event.languages) and (profile.language == '')) %}
+                <span class="vn">
+                Click on the button below to view more relevant {{ profile.otherTypeOfPeople }} that we have specially prepared for you.
+                </span>
+              {% endif %}
+              {% if (profile.language == 'th') or (('th' in event.languages) and (profile.language == '')) %}
+                <span class="th">
+                Click on the button below to view more relevant {{ profile.otherTypeOfPeople }} that we have specially prepared for you.
+                </span>
+              {% endif %}
+              {% if (profile.language == 'kr') or (('kr' in event.languages) and (profile.language == '')) %}
+                <span class="kr">
+                 Click on the button below to view more relevant {{ profile.otherTypeOfPeople }} that we have specially prepared for you.
+                </span>
+              {% endif %}
+              {% if (profile.language == 'en') or (('en' in event.languages) and (profile.language == '')) %}
+                <span class="en">
+                  Click on the button below to view more relevant {{ profile.otherTypeOfPeople }} that we have specially prepared for you.
+                </span>
+              {% endif %}          
+              </br>
+            </span>
+          </p>
+        </td>
+      </tr>
+      
+      <tr style="background:white;">
+        <td colspan="1" width="120"></td>
+        <td colspan="1" width="360" style="background:{{settings.themeBackground}};text-align:center;">
+          <a href="{{event.urlLink}}?passcode={{profile.loginPasscode}}" 
+             target="_blank"
+             style="text-decoration:none;
+                    color:{{settings.themeFontColor}};">
+	            <h3 style="color:white;margin:30px 0;">
+                <span id="edit_section_3">
+                  {% if (profile.language == 'cn') or (('cn' in event.languages) and (profile.language == '')) %}
+                    <span class="cn">
+                      View More Recommendations
+                    </span>
+                  {% endif %}
+                  {% if (profile.language == 'tc') or (('tc' in event.languages) and (profile.language == '')) %}
+                    <span class="tc">
+                      View More Recommendations
+                    </span>
+                  {% endif %}
+                  {% if (profile.language == 'jp') or (('jp' in event.languages) and (profile.language == '')) %}
+                    <span class="jp">
+                      View More Recommendations
+                    </span>
+                  {% endif %}
+                  {% if (profile.language == 'id') or (('id' in event.languages) and (profile.language == '')) %}
+                    <span class="id">
+                      View More Recommendations
+                    </span>
+                  {% endif %}
+                  {% if (profile.language == 'vn') or (('vn' in event.languages) and (profile.language == '')) %}
+                    <span class="vn">
+                      View More Recommendations
+                    </span>
+                  {% endif %}
+                  {% if (profile.language == 'th') or (('th' in event.languages) and (profile.language == '')) %}
+                    <span class="th">
+                      View More Recommendations
+                    </span>
+                  {% endif %}
+                  {% if (profile.language == 'kr') or (('kr' in event.languages) and (profile.language == '')) %}
+                    <span class="kr">
+                      View More Recommendations
+                    </span>
+                  {% endif %}
+                  {% if (profile.language == 'en') or (('en' in event.languages) and (profile.language == '')) %}
+                    <span class="en">
+                      View More Recommendations
+                    </span>
+                  {% endif %}               
+                </span>
+							</h3>
+	        </a>        
+        </td>
+        <td colspan="1" width="120"></td>
+      </tr>
+      
+      <tr style="background:white;">
+          <td colspan="3">
+            <p style="margin:20px 20px 30px 20px">
+            </br>
+            <span id="edit_section_4">
+              {% if (profile.language == 'cn') or (('cn' in event.languages) and (profile.language == '')) %}
+                <span class="cn">
+                  Please feel free to reply this email if you have any queries. I hope you will be able to arrange some meaningful meetings!<br/>
+                </span>
+              {% endif %}
+              {% if (profile.language == 'tc') or (('tc' in event.languages) and (profile.language == '')) %}
+                <span class="tc">
+                  Please feel free to reply this email if you have any queries. I hope you will be able to arrange some meaningful meetings!<br/>
+                </span>
+              {% endif %}
+              {% if (profile.language == 'jp') or (('jp' in event.languages) and (profile.language == '')) %}
+                <span class="jp">
+                  Please feel free to reply this email if you have any queries. I hope you will be able to arrange some meaningful meetings!<br/>
+                </span>
+              {% endif %}
+              {% if (profile.language == 'id') or (('id' in event.languages) and (profile.language == '')) %}
+                <span class="id">
+                  Please feel free to reply this email if you have any queries. I hope you will be able to arrange some meaningful meetings!<br/>
+                </span>
+              {% endif %}
+              {% if (profile.language == 'vn') or (('vn' in event.languages) and (profile.language == '')) %}
+                <span class="vn">
+                  Please feel free to reply this email if you have any queries. I hope you will be able to arrange some meaningful meetings!<br/>
+                </span>
+              {% endif %}
+              {% if (profile.language == 'th') or (('th' in event.languages) and (profile.language == '')) %}
+                <span class="th">
+                  Please feel free to reply this email if you have any queries. I hope you will be able to arrange some meaningful meetings!<br/>
+                </span>
+              {% endif %}
+              {% if (profile.language == 'kr') or (('kr' in event.languages) and (profile.language == '')) %}
+                <span class="kr">
+                  Please feel free to reply this email if you have any queries. I hope you will be able to arrange some meaningful meetings!<br/>
+                </span>
+              {% endif %}
+              {% if (profile.language == 'en') or (('en' in event.languages) and (profile.language == '')) %}
+                <span class="en">
+                  Please feel free to reply this email if you have any queries. I hope to assist you in arranging meaningful meetings at the event.<br/>
+                </span>
+              {% endif %}          
+              </span>
+            </p>
+          </td>
+      </tr>
+      
+      <tr style="background-color:white;text-align:center;">
+        <td colspan="1" width="60"></td>
+        <td colspan="1" width="480">
+          <hr style="color:#e5e5e5;">
+          <p style="font-size:12px; color:#7f8c8d;">
+            Match App is designed for modern browsers (Chrome, IE10+) and mobile devices (iOS6+, Android 4.3+) to enable the best networking experience.<br/><br/>
+            {{settings.footer}}
+          </p>
+          <hr style="color:#e5e5e5;">
+        </td>
+        <td colspan="1" width="60"></td>
+      </tr>      
+    </table>
+  </center>
+</body>
+</html>
