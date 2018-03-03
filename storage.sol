@@ -1,13 +1,13 @@
 pragma solidity ^0.4.20;
 
 contract SimpleStorage {
-    unit storedData;
+    uint storedData;
   
-    function set(unit x) public {
+    function set(uint x) public {
         storedData = x;
   }
   
-    function get() public constant returns (unit) {
+    function get() public constant returns (uint) {
         return storedData;
   }
 }
