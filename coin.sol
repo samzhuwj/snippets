@@ -4,11 +4,11 @@ contract Coin {
     // The keyword "public" makes those variables
     // readable from outside.
     address public minter;
-    mapping (address => unit) public balances;
+    mapping (address => uint) public balances;
     
     // Events allow light clients to react on
     // changes efficiently.
-    event Sent(address from, address to, unit amount);
+    event Sent(address from, address to, uint amount);
     
     // This is the ocnstructor whose code is
     // run only when the contract is created.
