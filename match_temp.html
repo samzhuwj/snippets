@@ -1,0 +1,841 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+</head>
+
+<body style="margin:0; padding:0; background-color:#e5e5e5;">
+  <center>
+    <table cellpadding="0" cellspacing="0" bgcolor="#e5e5e5" border="0" width="600" style="margin-top:20px;margin-bottom:20px;font-family:Helvetica, Arial,san-serif;line-height:1.4">
+      <tr style="margin-bottom:20px;">
+        <td colspan="3">
+					{% if event.branded %}
+					  {% if engagement_settings.html_email_banner_linkout %}
+							<a href="{{ engagement_settings.html_email_banner_linkout }}">
+						{% endif %}
+						    <img height="150" width="600" src="http://img.jublia.com/e/{{event.eventName}}/img/{{engagement_settings.html_email_banner_identifier}}" alt="header"/>
+						{% if engagement_settings.html_email_banner_linkout %}
+						  </a>
+						{% endif %}
+          {% endif %}
+				</td>
+      </tr>
+
+      <tr>
+        <td colspan="3" style="background:white;">
+          <h3 style="color:#000000;font-size:18px;margin:30px 20px 0 20px;">
+            <span id="edit_section_1">
+              {% if (profile.language == 'cn') or (('cn' in event.languages) and (profile.language == '')) %}
+                <span class="cn">
+                  您于{{event.eventFullName}}展会的会议日程表
+                </span>
+              {% endif %}
+              {% if (profile.language == 'tc') or (('tc' in event.languages) and (profile.language == '')) %}
+                <span class="tc">
+                  您於{{event.eventFullName}}展會的會議日程表
+                </span>
+              {% endif %}
+              {% if (profile.language == 'jp') or (('jp' in event.languages) and (profile.language == '')) %}
+                <span class="jp">
+                  {{event.eventFullName}}でのあなたのミーティングスケジュールをご確認ください
+                </span>
+              {% endif %}
+              {% if (profile.language == 'id') or (('id' in event.languages) and (profile.language == '')) %}
+                <span class="id">
+                  Daftar Pertemuan Anda untuk {{event.eventFullName}}
+                </span>
+              {% endif %}
+              {% if (profile.language == 'vn') or (('vn' in event.languages) and (profile.language == '')) %}
+                <span class="vn">
+                  Lịch trình các cuộc hẹn tại {{event.eventFullName}}
+                </span>
+              {% endif %}
+              {% if (profile.language == 'th') or (('th' in event.languages) and (profile.language == '')) %}
+                <span class="th">
+                  รายการนัดหมายของคุณภายในงาน {{event.eventFullName}}
+                </span>
+              {% endif %}
+              {% if (profile.language == 'kr') or (('kr' in event.languages) and (profile.language == '')) %}
+                <span class="kr">
+                  {{event.eventFullName}}을 위한 귀하의 만남 목록
+                </span>
+              {% endif %}
+              {% if (profile.language == 'en') or (('en' in event.languages) and (profile.language == '')) %}
+                <span class="en">
+                  Your List of Meeting(s) for {{event.eventFullName}}
+                </span>
+              {% endif %}
+            </span>         
+          </h3>
+
+          <p style="margin:20px 20px 10px 20px;">
+            Dear {{profile.fullName}},<br/><br/>
+            <span id="edit_section_2">
+              {% if (profile.language == 'cn') or (('cn' in event.languages) and (profile.language == '')) %}
+                <span class="cn">
+                  以下的会议信息准确率为 {{ settings.datetime }}<br/>
+                </span>
+              {% endif %}
+              {% if (profile.language == 'tc') or (('tc' in event.languages) and (profile.language == '')) %}
+                <span class="tc">
+                  以下的會議信息準確率為{{ settings.datetime }}<br/>
+                </span>
+              {% endif %}
+              {% if (profile.language == 'jp') or (('jp' in event.languages) and (profile.language == '')) %}
+                <span class="jp">
+                  こちらが確定したミーティングスケジュールです。ミーティングの日程、時間、場所をご確認ください。<br/>
+                </span>
+              {% endif %}
+              {% if (profile.language == 'id') or (('id' in event.languages) and (profile.language == '')) %}
+                <span class="id">
+                  Jadwal pertemuan dibawah ini akurat pada {{ settings.datetime }}<br/>
+                </span>
+              {% endif %}
+              {% if (profile.language == 'vn') or (('vn' in event.languages) and (profile.language == '')) %}
+                <span class="vn">
+                  Thông tin cuộc họp dưới đây chính xác vào {{ settings.datetime }} Giờ địa phương của sự kiện.
+                <br/>
+                </span>
+              {% endif %}
+              {% if (profile.language == 'th') or (('th' in event.languages) and (profile.language == '')) %}
+                <span class="th">
+                  ข้อมูลตารางนัดสุดท้ายมีความถูกต้อง ณ วันที่ {{ settings.datetime }}<br/>
+                </span>
+              {% endif %}
+              {% if (profile.language == 'kr') or (('kr' in event.languages) and (profile.language == '')) %}
+                <span class="kr">
+                  국내 시간 {{ settings.datetime }} 기준으로, 귀하의 현장 미팅 스케쥴이 아래와 같이 확정 되었습니다.<br/>
+                </span>
+              {% endif %}
+              {% if (profile.language == 'en') or (('en' in event.languages) and (profile.language == '')) %}
+                <span class="en">
+                  The meeting information below is accurate as of {{ settings.datetime }} (Event Local Time).<br/>
+                </span>
+              {% endif %}
+            </span>
+          
+            {% if profile.contactNo == '' %}
+              <span id="edit_section_3">
+                {% if (profile.language == 'cn') or (('cn' in event.languages) and (profile.language == '')) %}
+                  <span class="cn">
+                    要在每次会议{{ settings.alertTime }}分钟前收到免费短信提醒, 请点击以下输入您的手机号码。
+                  </span>
+                {% endif %}
+                {% if (profile.language == 'tc') or (('tc' in event.languages) and (profile.language == '')) %}
+                  <span class="tc">
+                    要在每次會議{{ settings.alertTime }}鐘前收到免費短信提醒, 請點擊以下輸入您的手機號碼。
+                  </span>
+                {% endif %}
+                {% if (profile.language == 'jp') or (('jp' in event.languages) and (profile.language == '')) %}
+                  <span class="jp">
+                    ミーティングの{{ settings.alertTime }}分前に、リマインドのSMSを送信させて頂きます。下記のリンクをクリックして、携帯電話番号をご入力ください。
+                  </span>
+                {% endif %}
+                {% if (profile.language == 'id') or (('id' in event.languages) and (profile.language == '')) %}
+                  <span class="id">
+                    Untuk menerima pengingat SMS gratis, {{ settings.alertTime }} menit sebelum setiap pertemuan, masukkan nomor ponsel Anda saat mengklik di bawah ini.
+                  </span>
+                {% endif %}
+                {% if (profile.language == 'vn') or (('vn' in event.languages) and (profile.language == '')) %}
+                  <span class="vn">
+                    Để nhận được tin nhắn nhắc nhở {{ settings.alertTime }} vui lòng cung cấp số điện thoại bên dưới
+                  </span>
+                {% endif %}
+                {% if (profile.language == 'th') or (('th' in event.languages) and (profile.language == '')) %}
+                  <span class="th">
+                    ถ้าคุณต้องการรับการแจ้งเตือนผ่านทาง sms ฟรี ในเวลา {{ settings.alertTime }}นาทีก่อนการนัดหมายแต่ละครั้งกรุณากดลิ้งค์ด้านล่างเพื่อกรอกหมายเลขโทรศัพท์ของคุณ
+                  </span>
+                {% endif %}
+                {% if (profile.language == 'kr') or (('kr' in event.languages) and (profile.language == '')) %}
+                  <span class="kr">
+                    무료 SMS 알림을 받으시려면, 각 만남 {{ settings.alertTime }}분 전에, 아래를 클릭하고 귀하의 휴대전화 번호를 입력하십시오.
+                  </span>
+                {% endif %}
+                {% if (profile.language == 'en') or (('en' in event.languages) and (profile.language == '')) %}
+                  <span class="en">
+                    To receive a complimentary SMS reminder, {{ settings.alertTime }} mins before each meeting, enter your mobile number upon clicking below.
+                  </span>
+                {% endif %}
+              </span>
+              <br/>
+
+              <a href = "https://jublia.com/a/{{event.eventName}}?passcode={{profile.loginPasscode}}&print=1" style="text-decoration:none;">
+                <button style="background-color:{{settings.themeBackground}};border:none;padding:10px">
+                  <b>
+                  <span id="edit_section_4">
+                    {% if (profile.language == 'cn') or (('cn' in event.languages) and (profile.language == '')) %}
+                      <span class="cn">
+                        输入手机号码
+                      </span>
+                    {% endif %}
+                    {% if (profile.language == 'tc') or (('tc' in event.languages) and (profile.language == '')) %}
+                      <span class="tc">
+                        輸入手機密碼
+                      </span>
+                    {% endif %}
+                    {% if (profile.language == 'jp') or (('jp' in event.languages) and (profile.language == '')) %}
+                      <span class="jp">
+                        携帯電話番号を入力する
+                      </span>
+                    {% endif %}
+                    {% if (profile.language == 'id') or (('id' in event.languages) and (profile.language == '')) %}
+                      <span class="id">
+                        Masukkan Nomor Ponsel
+                      </span>
+                    {% endif %}
+                    {% if (profile.language == 'vn') or (('vn' in event.languages) and (profile.language == '')) %}
+                      <span class="vn">
+                        Nhập số điện thoại di động
+                      </span>
+                    {% endif %}
+                    {% if (profile.language == 'th') or (('th' in event.languages) and (profile.language == '')) %}
+                      <span class="th">
+                        กรอกหมายเลขโทรศัพท์
+                      </span>
+                    {% endif %}
+                    {% if (profile.language == 'kr') or (('kr' in event.languages) and (profile.language == '')) %}
+                      <span class="kr">
+                        휴대전화 번호 입력
+                      </span>
+                    {% endif %}
+                    {% if (profile.language == 'en') or (('en' in event.languages) and (profile.language == '')) %}
+                      <span class="en">
+                        Enter Mobile Number
+                      </span>
+                    {% endif %}
+                  </span>
+                  </b>
+                </button>
+                <br/>
+              </a>
+            {% endif %}
+          </p>
+
+          <p style="margin:20px 20px 10px 20px;">                    
+            {% if event.android_url and event.ios_url %}
+              <span id="edit_section_5">
+                {% if (profile.language == 'cn') or (('cn' in event.languages) and (profile.language == '')) %}
+                  <span class="cn">
+                    为了帮助您更轻松地管理您的会议, 我们建议您下载{{ event.eventFullName }}平台!下载后, 使用这密码登录: <b>{{ profile.login_passcode }}</b><br/>
+                  </span>
+                {% endif %}
+                {% if (profile.language == 'tc') or (('tc' in event.languages) and (profile.language == '')) %}
+                  <span class="tc">
+                    為了幫助您更輕鬆地管理您的會議, 我們建議您下載{{ event.eventFullName }}平台!下載后, 使用這密碼登錄: <b>{{ profile.login_passcode }}</b><br/>
+                  </span>
+                {% endif %}
+                {% if (profile.language == 'jp') or (('jp' in event.languages) and (profile.language == '')) %}
+                  <span class="jp">
+                    To help you easily manage your meetings, we recommend you to download {{ event.eventFullName }} App!
+                    Once downloaded, login with your passcode: <b>{{ profile.login_passcode }}</b><br/>
+                  </span>
+                {% endif %}
+                {% if (profile.language == 'id') or (('id' in event.languages) and (profile.language == '')) %}
+                  <span class="id">
+                    Untuk membantu Anda mengatur pertemuan dengan mudah, sebaiknya Anda mengunduh aplikasi{{ event.eventFullName }}!
+                    Setelah diunduh, akses aplikasi dengan kode sandi Anda: <b>{{ profile.login_passcode }}</b><br/>
+                  </span>
+                {% endif %}
+                {% if (profile.language == 'vn') or (('vn' in event.languages) and (profile.language == '')) %}
+                  <span class="vn">
+                    Để giúp bạn dễ dàng quản lý cuộc họp, chúng tôi khuyên bạn nên tải xuống ứng dụng {{ event.eventFullName }}!
+                    Sau khi tải xuống, đăng nhập bằng mật mã của bạn: <b>{{ profile.login_passcode }}</b><br/>
+                  </span>
+                {% endif %}
+                {% if (profile.language == 'th') or (('th' in event.languages) and (profile.language == '')) %}
+                  <span class="th">
+                    และเพื่อทำให้การจัดการนัดพบของคุณง่ายขึ้นไปอีก เราขอแนะนำให้คุณ ดาวน์โหลด {{ event.app_name }} แอพพลิเตชั่นนี้
+                    เมื่อดาวน์โหลดเสร็จแล้ว ก็สามารถเข้าบัญชีได้โดยใช้รหัสผ่าน <b>{{ profile.login_passcode }}</b><br/>
+                  </span>
+                {% endif %}
+                {% if (profile.language == 'kr') or (('kr' in event.languages) and (profile.language == '')) %}
+                  <span class="kr">
+                    귀하의 현장 미팅 진행을 원활히 하기 위하여,  {{ event.app_name }} 앱을 다운로드 하시길 권장 드립니다.
+                    다운로드 하신 후, 귀하의 패스코드: <b>{{ profile.login_passcode }}</b>를 입력 후 로그인 하시기 바랍니다.<br/>
+                  </span>
+                {% endif %}
+                {% if (profile.language == 'en') or (('en' in event.languages) and (profile.language == '')) %}
+                  <span class="en">
+                    To help you easily manage your meetings, we recommend you to download {{ event.eventFullName }} App!
+                    Once downloaded, login with your passcode: <b>{{ profile.login_passcode }}</b><br/>
+                  </span>
+                {% endif %}
+              </span>
+
+              <a href="{{ event.android_url }}" style="text-decoration:none;">
+                <button style="background-color:{{settings.themeBackground}};border:none;padding:10px;margin-right:15px">
+                  <b>For Android</b>
+                </button>
+              </a>
+              <a href="{{ event.ios_url }}" style="text-decoration:none;">
+                <button style="background-color:{{settings.themeBackground}};border:none;padding:10px;margin-left:15px">
+                  <b>For iOS</b>
+                </button>
+              </a>
+            {% endif %}
+          </p>
+            
+          <p style="margin:20px 20px 20px 20px;">
+            <span id="edit_section_5">
+              {% if (profile.language == 'cn') or (('cn' in event.languages) and (profile.language == '')) %}
+                <span class="cn">
+                  您可以点击邮件附加的ICS档案，轻松导入您个人的会面日程表。此外，您也可以点击以下打印您的会面日程表。<br/>
+                </span>
+              {% endif %}
+              {% if (profile.language == 'tc') or (('tc' in event.languages) and (profile.language == '')) %}
+                <span class="tc">
+                  您可以點擊郵件附加的ICS檔案，輕鬆導入您個人的會面日程表。此外，您也可以點擊以下打印您的會面日程表。<br/>                </span>
+              {% endif %}
+              {% if (profile.language == 'jp') or (('jp' in event.languages) and (profile.language == '')) %}
+                <span class="jp">
+                  添付されているICSファイルで、ミーティングスケジュールをあなたのカレンダーに簡単に反映させることが出来ます。下記のボタンで、あなたのミーティングスケジュールを印刷することができます。<br/>
+                </span>
+              {% endif %}
+              {% if (profile.language == 'id') or (('id' in event.languages) and (profile.language == '')) %}
+                <span class="id">
+                  Anda dapat dengan mudah mengimpor jadwal pertemuan Anda dengan mengklik pada file ICS terlampir.
+                  Sebagai alternatif, Anda bisa mengklik yang berikut untuk mencetak jadwal pertemuan Anda.<br/>
+                </span>
+              {% endif %}
+              {% if (profile.language == 'vn') or (('vn' in event.languages) and (profile.language == '')) %}
+                <span class="vn">
+                  Đồng bộ hóa các cuộc hẹn vào Lịch trình với file ICS đính kèm. Vui lòng nhấn vào nút bên dưới để in lịch trình các cuộc hẹn<br/>
+                </span>
+              {% endif %}
+              {% if (profile.language == 'th') or (('th' in event.languages) and (profile.language == '')) %}
+                <span class="th">
+                  และเพื่อทำให้การจัดการนัดพบของคุณง่ายขึ้นไปอีก เราขอแนะนำให้คุณ ดาวน์โหลด {{ event.app_name }} แอพพลิเตชั่นนี้
+                  เมื่อดาวน์โหลดเสร็จแล้ว ก็สามารถเข้าบัญชีได้โดยใช้รหัสผ่าน <b>{{ profile.login_passcode }}</b><br/>
+                </span>
+              {% endif %}
+              {% if (profile.language == 'kr') or (('kr' in event.languages) and (profile.language == '')) %}
+                <span class="kr">
+                  아래에 첨부된 ICS 파일로 손쉽게 귀하의 일정을 달력으로 불러올 수 있습니다. 또한 아래의 버튼을 클릭해 만남 일정을 출력할 수 있습니다.<br/>
+                </span>
+              {% endif %}
+              {% if (profile.language == 'en') or (('en' in event.languages) and (profile.language == '')) %}
+                <span class="en">
+                  Easily import your meetings to your calendar with the ICS file attached below. You can also click the button below to print your meetings schedule.<br/>
+                </span>
+              {% endif %}
+            </span>
+                        
+            <a href = "https://jublia.com/a/{{event.eventName}}?passcode={{profile.loginPasscode}}&print=1" style="text-decoration:none;">
+              <button style="background-color:{{settings.themeBackground}};border:none;padding:10px">
+                <b>
+                <span id="edit_section_6">
+                  {% if (profile.language == 'cn') or (('cn' in event.languages) and (profile.language == '')) %}
+                    <span class="cn">
+                      打印您的会面表<br/>
+                    </span>
+                  {% endif %}
+                  {% if (profile.language == 'tc') or (('tc' in event.languages) and (profile.language == '')) %}
+                    <span class="tc">
+                      打印您的會面表<br/>
+                    </span>
+                  {% endif %}
+                  {% if (profile.language == 'jp') or (('jp' in event.languages) and (profile.language == '')) %}
+                    <span class="jp">
+                      ミーティングスケジュールを印刷する<br/>
+                    </span>
+                  {% endif %}
+                  {% if (profile.language == 'id') or (('id' in event.languages) and (profile.language == '')) %}
+                    <span class="id">
+                      Cetak jadwal<br/>
+                    </span>
+                  {% endif %}
+                  {% if (profile.language == 'vn') or (('vn' in event.languages) and (profile.language == '')) %}
+                    <span class="vn">
+                      In lịch trình<br/>
+                    </span>
+                  {% endif %}
+                  {% if (profile.language == 'th') or (('th' in event.languages) and (profile.language == '')) %}
+                    <span class="th">
+                      พิมพ์ตารางการนัดหมาย<br/>
+                    </span>
+                  {% endif %}
+                  {% if (profile.language == 'kr') or (('kr' in event.languages) and (profile.language == '')) %}
+                    <span class="kr">
+                      일정 출력하기<br/>
+                    </span>
+                  {% endif %}
+                  {% if (profile.language == 'en') or (('en' in event.languages) and (profile.language == '')) %}
+                    <span class="en">
+                      Print Schedule<br/>
+                    </span>
+                  {% endif %}
+                </span>
+                </b>
+              </button>
+            </a>
+          </p>
+        </td>
+      </tr>
+      
+      <tr>
+        <td colspan="3" style="background:{{settings.themeBackground}};">
+          <h3 style="font-size:18px;margin:15px 20px 5px 20px;">
+            <span id="edit_section_7">
+              {% if (profile.language == 'cn') or (('cn' in event.languages) and (profile.language == '')) %}
+                <span class="cn">
+                  您安排的会面<br/>
+                </span>
+              {% endif %}
+              {% if (profile.language == 'tc') or (('tc' in event.languages) and (profile.language == '')) %}
+                <span class="tc">
+                  您安排的會面<br/>
+                </span>
+              {% endif %}
+              {% if (profile.language == 'jp') or (('jp' in event.languages) and (profile.language == '')) %}
+                <span class="jp">
+                  あなたのミーティング<br/>
+                </span>
+              {% endif %}
+              {% if (profile.language == 'id') or (('id' in event.languages) and (profile.language == '')) %}
+                <span class="id">
+                  Pertemuan Anda<br/>
+                </span>
+              {% endif %}
+              {% if (profile.language == 'vn') or (('vn' in event.languages) and (profile.language == '')) %}
+                <span class="vn">
+                  Các cuộc hẹn của bạn<br/>
+                </span>
+              {% endif %}
+              {% if (profile.language == 'th') or (('th' in event.languages) and (profile.language == '')) %}
+                <span class="th">
+                  การนัดหมายของคุณ<br/>
+                </span>
+              {% endif %}
+              {% if (profile.language == 'kr') or (('kr' in event.languages) and (profile.language == '')) %}
+                <span class="kr">
+                  귀하의 만남<br/>
+                </span>
+              {% endif %}
+              {% if (profile.language == 'en') or (('en' in event.languages) and (profile.language == '')) %}
+                <span class="en">
+                  Your meetings<br/>
+                </span>
+              {% endif %}
+            </span>
+          </h3>
+          <p style = "font-size:11px;margin:0 20px 15px 20px">
+            <span id="edit_section_8">
+              {% if (profile.language == 'cn') or (('cn' in event.languages) and (profile.language == '')) %}
+                <span class="cn">
+                  不在预定的会面出现会对另一方来说是不愉快的经历。如果您需要更改任何会议, 请<b>重新安排</b>或<b>取消</b>。<br/>
+                </span>
+              {% endif %}
+              {% if (profile.language == 'tc') or (('tc' in event.languages) and (profile.language == '')) %}
+                <span class="tc">
+                  不在預定的會面出現會對另一方來說是不愉快的經歷。如果您需要更改任何會議, 請<b>重新安排</b>或<b>取消</b>。<br/>
+                </span>
+              {% endif %}
+              {% if (profile.language == 'jp') or (('jp' in event.languages) and (profile.language == '')) %}
+                <span class="jp">
+                  事前連絡なしの遅刻やキャンセルは、相手にご迷惑をかけしてしまいますのでご遠慮ください。ミーティングの変更をご希望の場合は、こちらをクリックして下さい。<br/>
+                </span>
+              {% endif %}
+              {% if (profile.language == 'id') or (('id' in event.languages) and (profile.language == '')) %}
+                <span class="id">
+                  Tidak hadir pada pertemuan yang telah dijadwalkan merupakan pengalaman yang tidak menyenangkan bagi pihak lainnya. Jika Anda perlu melakukan perubahan pada pertemuan, silahkan <b>Menjadwal Ulang</b> atau <b>Batal</b>.<br/>
+                </span>
+              {% endif %}
+              {% if (profile.language == 'vn') or (('vn' in event.languages) and (profile.language == '')) %}
+                <span class="vn">
+                  Vui lòng có mặt đúng giờ tại các cuộc hẹn đã xác nhận để thể hiện sự chuyên nghiệp. Để thay đổi các cuộc hẹn, vui lòng click vào đây.<br/>
+                </span>
+              {% endif %}
+              {% if (profile.language == 'th') or (('th' in event.languages) and (profile.language == '')) %}
+                <span class="th">
+                  การไม่ไปตามตารางนัดหมายหรือผิดนัดหมาย ถือจะเป็นการเสียมารยาทต่อฝ่ายตรงข้ามหากคุณต้องการเปลี่ยนแปลงการนัดหมาย กรุณาคลิกปุ่มด้านล่าง<br/>
+                </span>
+              {% endif %}
+              {% if (profile.language == 'kr') or (('kr' in event.languages) and (profile.language == '')) %}
+                <span class="kr">
+                  상대에게 약속된 만남에 나가지 않는 것은 불쾌한 경험이 됩니다. 만남 일정에 변경이 필요하신 경우, 아래를 클릭하십시오.<br/>
+                </span>
+              {% endif %}
+              {% if (profile.language == 'en') or (('en' in event.languages) and (profile.language == '')) %}
+                <span class="en">
+                  Not showing up at scheduled meetings is an unpleasant experience for the other party. Should you need to change any meetings, please <b>Reschedule</b> or <b>Cancel</b>.<br/>
+                </span>
+              {% endif %}
+            </span>
+          </p>          
+        </td>
+      </tr>
+      
+      <tr>
+        <td colspan="3" height="10">
+        </td>
+      </tr>
+
+      {% for i in range(0, meetings|length) %}
+      <tr style="background:white;">
+        <td width="120" align="center">
+          {{ meetings[i].date }} <br/>
+          <b style = "font-size:30px;"> {{ meetings[i].time }} </b><br/>
+          {{ meetings[i].venue }}
+         </td>
+
+        <td width="360" valign="top">
+          <p style="margin:10px 5px 0px 5px;line-height:1;">{{ meetings[i].name }}</p>
+          <p style="margin:0 5px;line-height:1;">{{ meetings[i].position }}</p>
+          <p style="margin:0 5px 10px 5px;line-height:1;">{{ meetings[i].company }}</p>
+          <div style="display:inline-block;margin:0 5px;">
+            {% if (meetings[i].description != "-") and (meetings[i].description != "") %}
+              <i style = "font-size: 11px; line-height:17px;">"
+                {{ meetings[i].description }}
+              "</i>
+            {% endif %}
+            {% if (meetings[i].hs_interests != "-") and (meetings[i].hs_interests != "") %}
+              <i style = "font-size: 11px;">
+                {{ profile.hs_interests_header }}: {{ meetings[i].hs_interests }}
+              </i><br/>
+            {% endif %}
+          </div>
+        </td>
+
+        <td width="120" valign="center" align="center">
+          <p style="margin:10px 15px;">
+            <a href = "{{event.urlLink}}/min/resched?passcode={{profile.loginPasscode}}&id_attendee={{meetings[i].meeting_id}}" style="text-decoration:none;">
+              <button style="background-color:{{settings.themeBackground}};border:none;padding:10px">
+                <b>
+                <span id="edit_section_9">
+                  {% if (profile.language == 'cn') or (('cn' in event.languages) and (profile.language == '')) %}
+                    <span class="cn">
+                      重新安排<br/>
+                    </span>
+                  {% endif %}
+                  {% if (profile.language == 'tc') or (('tc' in event.languages) and (profile.language == '')) %}
+                    <span class="tc">
+                      重新安排<br/>
+                    </span>
+                  {% endif %}
+                  {% if (profile.language == 'jp') or (('jp' in event.languages) and (profile.language == '')) %}
+                    <span class="jp">
+                      ミーティングの変更<br/>
+                    </span>
+                  {% endif %}
+                  {% if (profile.language == 'id') or (('id' in event.languages) and (profile.language == '')) %}
+                    <span class="id">
+                      Menjadwal Ulang<br/>
+                    </span>
+                  {% endif %}
+                  {% if (profile.language == 'vn') or (('vn' in event.languages) and (profile.language == '')) %}
+                    <span class="vn">
+                      Thay đổi lịch hẹn<br/>
+                    </span>
+                  {% endif %}
+                  {% if (profile.language == 'th') or (('th' in event.languages) and (profile.language == '')) %}
+                    <span class="th">
+                      เปลี่ยนตารางนัดหมาย<br/>
+                    </span>
+                  {% endif %}
+                  {% if (profile.language == 'kr') or (('kr' in event.languages) and (profile.language == '')) %}
+                    <span class="kr">
+                      일정 변경<br/>
+                    </span>
+                  {% endif %}
+                  {% if (profile.language == 'en') or (('en' in event.languages) and (profile.language == '')) %}
+                    <span class="en">
+                      Reschedule<br/>
+                    </span>
+                  {% endif %}
+                </span>
+                </b>
+              </button>
+            </a>                
+          </p>
+          <p style="margin:10px 15px;">
+            <a href = "{{event.urlLink}}/min/cancel?passcode={{profile.loginPasscode}}&id_attendee={{meetings[i].meeting_id}}" style="text-decoration:none;">
+              <button style="background-color:#e5e5e5;border:none;padding:10px">
+                <b>
+                <span id="edit_section_10">
+                  {% if (profile.language == 'cn') or (('cn' in event.languages) and (profile.language == '')) %}
+                    <span class="cn">
+                      取消<br/>
+                    </span>
+                  {% endif %}
+                  {% if (profile.language == 'tc') or (('tc' in event.languages) and (profile.language == '')) %}
+                    <span class="tc">
+                      取消<br/>
+                    </span>
+                  {% endif %}
+                  {% if (profile.language == 'jp') or (('jp' in event.languages) and (profile.language == '')) %}
+                    <span class="jp">
+                      キャンセル<br/>
+                    </span>
+                  {% endif %}
+                  {% if (profile.language == 'id') or (('id' in event.languages) and (profile.language == '')) %}
+                    <span class="id">
+                      Batal<br/>
+                    </span>
+                  {% endif %}
+                  {% if (profile.language == 'vn') or (('vn' in event.languages) and (profile.language == '')) %}
+                    <span class="vn">
+                      Hủy cuộc hẹn<br/>
+                    </span>
+                  {% endif %}
+                  {% if (profile.language == 'th') or (('th' in event.languages) and (profile.language == '')) %}
+                    <span class="th">
+                      ยกเลิกการนัดหมาย<br/>
+                    </span>
+                  {% endif %}
+                  {% if (profile.language == 'kr') or (('kr' in event.languages) and (profile.language == '')) %}
+                    <span class="kr">
+                      취소<br/>
+                    </span>
+                  {% endif %}
+                  {% if (profile.language == 'en') or (('en' in event.languages) and (profile.language == '')) %}
+                    <span class="en">
+                      Cancel<br/>
+                    </span>
+                  {% endif %}
+                </span>
+                </b>
+              </button>
+            </a>                
+          </p>
+        </td>
+      </tr>
+
+        <tr>
+          <td colspan="3" height="5"></td>
+        </tr>
+    {% endfor %}      
+
+      
+      <tr>
+        <td colspan="3" height="5">
+        </td>
+      </tr>
+
+      <tr style="background:white;">
+        <td colspan="3">
+          <p style="margin:30px 20px 10px 20px;">
+            <span id="edit_section_11">
+              {% if (profile.language == 'cn') or (('cn' in event.languages) and (profile.language == '')) %}
+                <span class="cn">
+                  {% if (event.isEN == 1) and (event.isSN == 1) %}
+                    <span class="isEN_and_isSN">
+                      请留意，<b>所有的会面将会在參展商展位/桌位中进行</b>。展会的地点如以下：
+                    </span>
+                  {% elif (event.isEN == 1)  %}
+                    <span class="isEN">
+                      请留意，<b>所有的会面将会在參展商展位中进行</b>。展会的地点如以下：
+                    </span>
+                  {% elif (event.isSN == 1) %}
+                    <span class="isSN">
+                      请留意，<b>所有的会面将会在桌位中进行</b>。展会的地点如以下：
+                    </span>
+                  {% endif %}
+                </span>
+              {% endif %}
+
+              {% if (profile.language == 'tc') or (('tc' in event.languages) and (profile.language == '')) %}
+                <span class="tc">
+                  {% if (event.isEN == 1) and (event.isSN == 1) %}
+                    <span class="isEN_and_isSN">
+                      請留意，<b>所有的會面將會在參展商展位/桌位中進行</b>。展會的地點如以下：
+                    </span>
+                  {% elif (event.isEN == 1)  %}
+                    <span class="isEN">
+                      請留意，<b>所有的會面將會在參展商展位中進行</b>。展會的地點如以下：
+                    </span>
+                  {% elif (event.isSN == 1) %}
+                    <span class="isSN">
+                      請留意，<b>所有的會面將會在桌位中進行</b>。展會的地點如以下：
+                    </span>
+                  {% endif %}
+                </span>
+              {% endif %}
+
+              {% if (profile.language == 'jp') or (('jp' in event.languages) and (profile.language == '')) %}
+                <span class="jp">
+                  {% if (event.isEN == 1) and (event.isSN == 1) %}
+                    <span class="isEN_and_isSN">
+                      ミーティングは<b>上記に記載の出展者ブースやミーティング用テーブル</b>で行われます。ミーティングの会場は下記の通りです。
+                    </span>
+                  {% elif (event.isEN == 1)  %}
+                    <span class="isEN">
+                      ミーティングは<b>上記に記載の出展者ブース</b>で行われます。ミーティングの会場は下記の通りです。
+                    </span>
+                  {% elif (event.isSN == 1) %}
+                    <span class="isSN">
+                      ミーティングは<b>上記に記載の出展者ブースやミーティング用テーブル</b>で行われます。ミーティングの会場は下記の通りです。
+                    </span>
+                  {% endif %}
+                </span>
+              {% endif %}
+
+              {% if (profile.language == 'id') or (('id' in event.languages) and (profile.language == '')) %}
+                <span class="id">
+                  {% if (event.isEN == 1) and (event.isSN == 1) %}
+                    <span class="isEN_and_isSN">
+                      Harap diperhatikan bahwa <b>pertemuan akan terjadi pada stand pameran/meja pertemuan seperti yang ditunjukkan di atas</b>. Lokasi pertemuan adalah:
+                    </span>
+                  {% elif (event.isEN == 1)  %}
+                    <span class="isEN">
+                      Harap diperhatikan bahwa <b>pertemuan akan terjadi pada stand pameran seperti yang ditunjukkan di atas</b>. Lokasi pertemuan adalah:
+                    </span>
+                  {% elif (event.isSN == 1) %}
+                    <span class="isSN">
+                      Harap diperhatikan bahwa <b>pertemuan akan terjadi pada meja pertemuan seperti yang ditunjukkan di atas</b>. Lokasi pertemuan adalah:
+                    </span>
+                  {% endif %}
+                </span>
+              {% endif %}
+
+              {% if (profile.language == 'vn') or (('vn' in event.languages) and (profile.language == '')) %}
+                <span class="vn">
+                  {% if (event.isEN == 1) and (event.isSN == 1) %}
+                    <span class="isEN_and_isSN">
+                      Lưu ý: các cuộc hẹn <b>sẽ diễn ra tại gian hàng của đơn vị triển lãm như đã đề cập ở trên.</b> Địa điểm diễn ra sự kiện:
+                    </span>
+                  {% elif (event.isEN == 1)  %}
+                    <span class="isEN">
+                      Xin lưu ý rằng<b> cuộc họp sẽ được tổ chức tại gian hàng của nhà triển lãm như đã nêu ở trên.</b> Vị trí của sự kiện là:
+                    </span>
+                  {% elif (event.isSN == 1) %}
+                    <span class="isSN">
+                      Lưu ý: các cuộc hẹn <b>  sẽ diễn ra tại gian hàng của đơn vị triển lãm như đã đề cập ở trên</b> Địa điểm diễn ra sự kiện:
+                    </span>
+                  {% endif %}
+                </span>
+              {% endif %}
+
+              {% if (profile.language == 'th') or (('th' in event.languages) and (profile.language == '')) %}
+                <span class="th">
+                  {% if (event.isEN == 1) and (event.isSN == 1) %}
+                    <span class="isEN_and_isSN">
+                      การนัดหมายจะเกิดขึ้นที่บูทของผู้แสดงงาน หรือบริเวณสถานที่ประชุมที่ระบุไว้ข้างต้นสถานที่นัดหมาย
+                    </span>
+                  {% elif (event.isEN == 1)  %}
+                    <span class="isEN">
+                      เมื่อดาวน์โหลดเสร็จแล้ว ก็สามารถเข้าบัญชีได้โดยใช้รหัสผ่าน<b>สถานที่นัดพบคือที่ บูธของผู้ออกงาน</b>สถานที่จัดงานคือ
+                    </span>
+                  {% elif (event.isSN == 1) %}
+                    <span class="isSN">
+                      โปรดทราบ<b>จะมีการจัดมุมนัดพบตามหมายเลขที่อยู่บนโต๊ะ</b>สถานที่ที่จัดไว้คือ
+                    </span>
+                  {% endif %}
+                </span>
+              {% endif %}
+
+              {% if (profile.language == 'kr') or (('kr' in event.languages) and (profile.language == '')) %}
+                <span class="kr">
+                  {% if (event.isEN == 1) and (event.isSN == 1) %}
+                    <span class="isEN_and_isSN">
+                      주의하실 점: 위에 명시된 바와 같이 만남은 전시 부스 / 회의 테이블에서 이루어집니다. 이벤트의 위치:
+                    </span>
+                  {% elif (event.isEN == 1)  %}
+                    <span class="isEN">
+                      위와 같이 참가업체 부스에서 비즈니스미팅이 진행될 것임을 알려드립니다. 미팅 장소는 :
+                    </span>
+                  {% elif (event.isSN == 1) %}
+                    <span class="isSN">
+                      위와 같이 미팅 테이블에서 비즈니스미팅이 진행될 것임을 알려드립니다. 미팅 장소는 :
+                    </span>
+                  {% endif %}
+                </span>
+              {% endif %}
+
+              {% if (profile.language == 'en') or (('en' in event.languages) and (profile.language == '')) %}
+                <span class="en">
+                  {% if (event.isEN == 1) and (event.isSN == 1) %}
+                    <span class="isEN_and_isSN">
+                      Please note that the <b>meetings will be occurring at the exhibitor booths / meeting tables as indicated above</b>. The location of the event is:
+                    </span>
+                  {% elif (event.isEN == 1)  %}
+                    <span class="isEN">
+                      Please note that the <b>meetings will be occurring at the exhibitor booths as indicated above</b>. The location of the event is:
+                    </span>
+                  {% elif (event.isSN == 1) %}
+                    <span class="isSN">
+                      Please note that the <b>meetings will be occurring at the meeting tables as indicated above</b>. The location of the event is:
+                    </span>
+                  {% endif %}
+                </span>
+              {% endif %}
+            </span>
+            <br/>
+            <b style="font-size:18px;">{{ event.venue }}</b>
+          </p>      
+        </td>
+      </tr>
+
+      <tr style="background:white;">
+        <td colspan="3">
+          <p style="margin:10px 20px 30px 20px">
+            <span id="edit_section_12">
+              {% if (profile.language == 'cn') or (('cn' in event.languages) and (profile.language == '')) %}
+                <span class="cn">
+                  如果您在展会期间有任何关于您会面安排的问题，您可于登记柜台得到帮助或回复此电邮。<br/>
+                </span>
+              {% endif %}
+              {% if (profile.language == 'tc') or (('tc' in event.languages) and (profile.language == '')) %}
+                <span class="tc">
+                  如果您在展會期間有任何關於您會面安排的問題，您可於登記櫃檯得到幫助或回復此電郵。<br/>
+                </span>
+              {% endif %}
+              {% if (profile.language == 'jp') or (('jp' in event.languages) and (profile.language == '')) %}
+                <span class="jp">
+                  イベントの当日にミーティングについてご不明点がありましたら、受付カウンターまでお越しください。<br/>
+                </span>
+              {% endif %}
+              {% if (profile.language == 'id') or (('id' in event.languages) and (profile.language == '')) %}
+                <span class="id">
+                  Jika Anda memiliki pertanyaan mengenai pertemuan Anda selama acara berlangsung, Anda bisa mendapatkan bantuan di loket pendaftaran atau membalas email ini.<br/>
+                </span>
+              {% endif %}
+              {% if (profile.language == 'vn') or (('vn' in event.languages) and (profile.language == '')) %}
+                <span class="vn">
+                  Vào thời gian diễn ra triển lãm, nếu Quý vị có thắc mắc về các cuộc hẹn, vui lòng liên hệ Phòng Ban tổ chức để được giải đáp.<br/>
+                </span>
+              {% endif %}
+              {% if (profile.language == 'th') or (('th' in event.languages) and (profile.language == '')) %}
+                <span class="th">
+                  หากมีข้อสงสัยที่เกี่ยวกับการนัดหมายของคุณระหว่างวันจัดงาน คุณสามารถขอความช่วยเหลือได้จากจุดลงทะเบียน หรือแค่ตอบกลับอีเมล์ฉบับนี้<br/>
+                </span>
+              {% endif %}
+              {% if (profile.language == 'kr') or (('kr' in event.languages) and (profile.language == '')) %}
+                <span class="kr">
+                  문의사항이 있으실 경우 이 이메일에 답장해주십시오. 즐거운 교류 되시길 바랍니다!<br/>
+                </span>
+              {% endif %}
+              {% if (profile.language == 'en') or (('en' in event.languages) and (profile.language == '')) %}
+                <span class="en">
+                  Should you have any queries regarding your meetings during the event day,
+                  you can get assistance at the registration counter or reply to this email.<br/>
+                </span>
+              {% endif %}
+            </span>
+          </p>
+        </td>
+      </tr>                 
+
+      <tr style="background-color:white;text-align:center;">
+        <td colspan="1" width="100"></td>
+        <td colspan="1" width="400">
+          <hr style="color:#e5e5e5;">
+          <p style="font-size:12px; color:#7f8c8d;">
+            <span id="edit_section_13">
+              <span class='cn tc jp id vn th kr en'>
+                <span class='isEN_or_isSN no_isEN_no_isSN'>
+                  Match App is designed for modern browsers (Chrome, IE10+) and mobile devices (iOS6+, Android 4.3+) to enable the best networking experience.<br/><br/>
+                </span>
+              </span>
+            </span>          
+            {{settings.footer}}
+          </p>
+          <hr style="color:#e5e5e5;">
+        </td>
+        <td colspan="1" width="100"></td>
+      </tr>  
+    </table>
+  </center>
+</body>
+</html>
