@@ -48,11 +48,11 @@ int main() {
   strVec[2] = str3;
 
   // Repeat a value to make a string
-  std::string str4(5, 'x');
+  std::string str4(10, 'x');
   strVec[3] = str4;
 
   // Combine strings with append or +
-  strVec[4] = str.append(" and your not");
+  strVec[4] = str.append(" and you are not");
   str += " and your not";
 
   // Append part of a string
