@@ -1,3 +1,5 @@
+// iteration control, while, for
+// sstream, std::string, std::vector, std::stringstream
 #include <iostream>
 #include <vector>
 #include <sstream>

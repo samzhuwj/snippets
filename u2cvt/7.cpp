@@ -1,3 +1,4 @@
+// sizeof(arrnNums4)/sizeof(*arrnNums4), arrnNums4[2][2][2]
 #include <iostream>
 
 int main(int argc, char* argv[])

@@ -1,3 +1,5 @@
+// data types, min & max values, the number of bytes used by a type
+// %c %d %5d %.3f %s, char, int, float, string
 #include <iostream>
 
 int g_iRandNum = 0;
@@ -19,6 +21,7 @@ int main(int argc, char* argv[])
   long double ldPi = 3.14159;
   auto whatWillIBe = true;
 
+  // std::numeric_limits<bool>::min() show data types min & max values
   std::cout << "Min bool " << std::numeric_limits<bool>::min() << "\n";
   std::cout << "Max bool " << std::numeric_limits<bool>::max() << "\n";
   std::cout << "Min char " << std::numeric_limits<char>::min() << "\n";
@@ -38,6 +41,7 @@ int main(int argc, char* argv[])
   std::cout << "Min long double " << std::numeric_limits<long double>::min() << "\n";
   std::cout << "Max long double " << std::numeric_limits<long double>::max() << "\n";
 
+  // sizeof(int), get the number of bytes used by a type
   std::cout << "bool Size " << sizeof(bool) << "\n";
   std::cout << "char Size " << sizeof(char) << "\n";
   std::cout << "short int Size " << sizeof(short int) << "\n";
@@ -48,8 +52,8 @@ int main(int argc, char* argv[])
   std::cout << "double Size " << sizeof(double) << "\n";
   std::cout << "long double Size " << sizeof(long double) << "\n";
 
-  printf("fFloatSum Precision : %.15f\n", fFloatSum);
-  printf("%c %d %5d %.3f %s\n", 'A', 10, 5, 3.1234, "Hi");
+  printf("fFloatSum Precision : %.15f\n", fFloatSum); // 15 dicimal float
+  printf("%c %d %5d %.3f %s\n", 'A', 10, 5, 3.1234, "Hi"); // char, int, 5 space right justified int, 3 decimal float/double, string
 
   return 0;
 }

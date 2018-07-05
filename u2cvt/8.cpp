@@ -1,3 +1,5 @@
+// vector index, vector size, vecnRandNums.size()
+// vecnRandNums.push_back(30)
 #include <iostream>
 #include <vector>
 
